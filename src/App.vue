@@ -1,376 +1,419 @@
 <template>
-  <div class="app-wrapper">
-    <!-- Header -->
-    <header class="header">
-      <div class="container header-inner">
-        <div class="logo">BrightPath Technologies</div>
-        <nav>
-          <a href="#services">Services</a>
-          <a href="#portfolio">Work</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact" class="btn btn-secondary nav-btn">Contact Us</a>
-        </nav>
+  <div class="ds-dashboard">
+    <header class="ds-header">
+      <div class="container flex justify-between items-center">
+        <div class="ds-logo">BrightPath <span>Design System</span></div>
+        <div class="ds-version">v2.0.0</div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero-content">
-        <h1>Engineering Excellence for the Modern Web</h1>
-        <p>We build high-performance, scalable web applications that drive enterprise conversion and growth. Partner with a premium software engineering team.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn">Start a Project</a>
-          <a href="#portfolio" class="btn btn-secondary">View Case Studies</a>
-        </div>
-      </div>
-    </section>
+    <div class="container ds-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="ds-sidebar">
+        <nav>
+          <a href="#logo">Logo Refinement</a>
+          <a href="#colors">Color Palette</a>
+          <a href="#typography">Typography Scale</a>
+          <a href="#spacing">Spacing System</a>
+          <a href="#grid">Grid System</a>
+          <a href="#components">Components</a>
+          <a href="#animations">Animations</a>
+        </nav>
+      </aside>
 
-    <!-- Trusted By Section -->
-    <section class="trusted-by bg-charcoal">
-      <div class="container">
-        <p class="text-center text-muted mb-4">Trusted by industry leaders</p>
-        <div class="logos grid-4">
-          <div class="company-logo">Acme Corp</div>
-          <div class="company-logo">GlobalTech</div>
-          <div class="company-logo">Innovate Inc</div>
-          <div class="company-logo">Nexus Systems</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-      <div class="container">
-        <div class="section-title">
-          <h2>Core Capabilities</h2>
-          <p>Delivering robust technical solutions tailored for scale.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Custom Web Development</h3>
-            <p>Full-stack engineering using modern frameworks. Fast, secure, and built to scale.</p>
-          </div>
-          <div class="card">
-            <h3>Cloud Architecture</h3>
-            <p>Resilient infrastructure design and cloud-native application deployment.</p>
-          </div>
-          <div class="card">
-            <h3>System Integration</h3>
-            <p>Seamlessly connect legacy systems with modern APIs and microservices.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="bg-charcoal">
-      <div class="container">
-        <div class="section-title">
-          <h2>Case Studies</h2>
-          <p>Proven results across complex engineering challenges.</p>
-        </div>
-        <div class="grid-2">
-          <div class="card">
-            <h3>FinTech Dashboard</h3>
-            <p>A high-frequency trading interface processing 10k+ requests per second.</p>
-            <div class="tags">
-              <span class="tag">Vue.js</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">WebSockets</span>
+      <!-- Main Content -->
+      <main class="ds-content">
+        <!-- Logo -->
+        <section id="logo" class="ds-section">
+          <h2>Logo Refinement</h2>
+          <p>The primary mark of BrightPath Technologies.</p>
+          <div class="card flex items-center gap-4">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" rx="8" fill="#2563eb"/>
+              <path d="M14 24L22 32L34 16" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <h3 class="mb-1">BrightPath</h3>
+              <p class="caption m-0">Corporate Logomark &amp; Typography</p>
             </div>
           </div>
-          <div class="card">
-            <h3>E-Commerce Platform</h3>
-            <p>Scalable marketplace architecture handling $10M+ in monthly GMV.</p>
-            <div class="tags">
-              <span class="tag">React</span>
-              <span class="tag">GraphQL</span>
-              <span class="tag">AWS</span>
+        </section>
+
+        <!-- Colors -->
+        <section id="colors" class="ds-section">
+          <h2>Color Palette</h2>
+          <p>Semantic colors ensuring high contrast and professional aesthetic.</p>
+          <div class="grid-3">
+            <div class="color-card">
+              <div class="color-swatch" style="background: var(--color-slate)"></div>
+              <div class="p-2">
+                <strong>Slate</strong>
+                <p class="caption">#0f172a / --color-slate</p>
+              </div>
+            </div>
+            <div class="color-card">
+              <div class="color-swatch" style="background: var(--color-charcoal)"></div>
+              <div class="p-2">
+                <strong>Charcoal</strong>
+                <p class="caption">#1e293b / --color-charcoal</p>
+              </div>
+            </div>
+            <div class="color-card">
+              <div class="color-swatch" style="background: var(--color-blue)"></div>
+              <div class="p-2">
+                <strong>Blue</strong>
+                <p class="caption">#2563eb / --color-blue</p>
+              </div>
+            </div>
+            <div class="color-card">
+              <div class="color-swatch border" style="background: var(--color-bg)"></div>
+              <div class="p-2">
+                <strong>Background</strong>
+                <p class="caption">#020617 / --color-bg</p>
+              </div>
+            </div>
+            <div class="color-card">
+              <div class="color-swatch border" style="background: var(--color-border)"></div>
+              <div class="p-2">
+                <strong>Border</strong>
+                <p class="caption">#334155 / --color-border</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Tech Stack Section -->
-    <section id="tech-stack">
-      <div class="container">
-        <div class="section-title">
-          <h2>Technology Stack</h2>
-          <p>We leverage industry-standard tools for maximum reliability.</p>
-        </div>
-        <div class="card text-center">
-          <div class="tags-large">
-            <span class="tag">Vue.js</span>
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">Python</span>
-            <span class="tag">Go</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Redis</span>
-            <span class="tag">AWS</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Kubernetes</span>
+        <!-- Typography -->
+        <section id="typography" class="ds-section">
+          <h2>Typography Scale</h2>
+          <p>Strict scaling based on an 8pt modular system.</p>
+          <div class="card flex flex-col gap-4">
+            <div>
+              <h1>Heading 1</h1>
+              <p class="caption">3rem (48px) / Bold</p>
+            </div>
+            <div>
+              <h2>Heading 2</h2>
+              <p class="caption">2.25rem (36px) / Bold</p>
+            </div>
+            <div>
+              <h3>Heading 3</h3>
+              <p class="caption">1.5rem (24px) / Bold</p>
+            </div>
+            <div>
+              <h4>Heading 4</h4>
+              <p class="caption">1.25rem (20px) / Bold</p>
+            </div>
+            <div>
+              <p>Body text. We build high-performance, scalable web applications that drive enterprise conversion and growth. Partner with a premium software engineering team.</p>
+              <p class="caption">1rem (16px) / Regular</p>
+            </div>
+            <div>
+              <span class="caption">Caption text. Used for meta-information.</span>
+              <p class="caption mt-1">0.875rem (14px) / Regular</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Pricing / Sprints Section -->
-    <section id="pricing" class="bg-charcoal">
-      <div class="container">
-        <div class="section-title">
-          <h2>Engagement Models</h2>
-          <p>Transparent pricing for high-impact engineering sprints.</p>
-        </div>
-        <div class="grid-2">
-          <div class="card pricing-card">
-            <h3>MVP Sprint</h3>
-            <div class="price">$15,000<span>/mo</span></div>
-            <ul>
-              <li>Dedicated Developer</li>
-              <li>Weekly Code Reviews</li>
-              <li>Basic Infrastructure Setup</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary w-100 mt-4">Inquire Now</a>
-          </div>
-          <div class="card pricing-card featured">
-            <h3>Enterprise Scale</h3>
-            <div class="price">$45,000<span>/mo</span></div>
-            <ul>
-              <li>Full Engineering Pod</li>
-              <li>Architecture Consulting</li>
-              <li>24/7 SLA Support</li>
-              <li>Advanced Security Audits</li>
-            </ul>
-            <a href="#contact" class="btn w-100 mt-4">Inquire Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-      <div class="container">
-        <div class="section-title">
-          <h2>Client Trust</h2>
-          <p>What our enterprise partners say about our engineering.</p>
-        </div>
-        <div class="grid-2">
+        <!-- Spacing -->
+        <section id="spacing" class="ds-section">
+          <h2>Spacing System</h2>
+          <p>Base-8 spatial units for consistent padding and margins.</p>
           <div class="card">
-            <p class="quote">"BrightPath transformed our legacy systems into a modern, scalable architecture. The code quality is exceptional."</p>
-            <p class="author">- CTO, GlobalTech</p>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-1)"></div>
+              <span class="caption ml-2">--spacing-1 (8px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-2)"></div>
+              <span class="caption ml-2">--spacing-2 (16px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-3)"></div>
+              <span class="caption ml-2">--spacing-3 (24px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-4)"></div>
+              <span class="caption ml-2">--spacing-4 (32px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-5)"></div>
+              <span class="caption ml-2">--spacing-5 (40px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-6)"></div>
+              <span class="caption ml-2">--spacing-6 (48px)</span>
+            </div>
+            <div class="spacing-demo flex items-center mb-2">
+              <div class="spacing-block" style="width: var(--spacing-8)"></div>
+              <span class="caption ml-2">--spacing-8 (64px)</span>
+            </div>
+            <div class="spacing-demo flex items-center">
+              <div class="spacing-block" style="width: var(--spacing-12)"></div>
+              <span class="caption ml-2">--spacing-12 (96px)</span>
+            </div>
           </div>
-          <div class="card">
-            <p class="quote">"Professional, transparent, and technically brilliant. They delivered our MVP ahead of schedule."</p>
-            <p class="author">- VP Engineering, Nexus Systems</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- FAQ Accordion -->
-    <section id="faq" class="bg-charcoal">
-      <div class="container">
-        <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
-        </div>
-        <div class="faq-list">
-          <div class="card mb-2">
-            <h4>What is your typical project timeline?</h4>
-            <p class="mt-2">For MVP sprints, we typically launch within 6-8 weeks. Enterprise scales vary based on scope.</p>
+        <!-- Grid System -->
+        <section id="grid" class="ds-section">
+          <h2>Grid System Preview</h2>
+          <p>12-column liquid layout standard.</p>
+          <div class="grid-12 mb-4">
+            <div class="grid-col" v-for="n in 12" :key="n">1</div>
           </div>
-          <div class="card mb-2">
-            <h4>Do you offer post-launch support?</h4>
-            <p class="mt-2">Yes, we provide ongoing maintenance and SLA-backed support contracts.</p>
+          <div class="grid-12 mb-4">
+            <div class="grid-col" style="grid-column: span 4;">4</div>
+            <div class="grid-col" style="grid-column: span 4;">4</div>
+            <div class="grid-col" style="grid-column: span 4;">4</div>
           </div>
-        </div>
-      </div>
-    </section>
+          <div class="grid-12">
+            <div class="grid-col" style="grid-column: span 3;">3</div>
+            <div class="grid-col" style="grid-column: span 6;">6</div>
+            <div class="grid-col" style="grid-column: span 3;">3</div>
+          </div>
+        </section>
 
-    <!-- Contact Form -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>Start a Conversation</h2>
-          <p>Contact our technical leads to discuss your project requirements.</p>
-        </div>
-        <div class="contact-form-container card">
-          <form @submit.prevent="submitForm">
+        <!-- Components -->
+        <section id="components" class="ds-section">
+          <h2>Reusable Components</h2>
+          <p>UI elements designed for conversion and clarity.</p>
+
+          <h3 class="mb-2">Buttons</h3>
+          <div class="card flex gap-4 items-center mb-4">
+            <button class="btn">Primary Action</button>
+            <button class="btn btn-secondary">Secondary Action</button>
+          </div>
+
+          <h3 class="mb-2">Badges</h3>
+          <div class="card flex gap-2 mb-4">
+            <span class="badge">New</span>
+            <span class="badge">Enterprise</span>
+            <span class="badge">Stable</span>
+          </div>
+
+          <h3 class="mb-2">Inputs &amp; Forms</h3>
+          <div class="card mb-4" style="max-width: 400px;">
             <div class="form-group">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" placeholder="Jane Doe" required>
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-control" placeholder="user@corporate.com" />
             </div>
-            <div class="form-group">
-              <label class="form-label">Corporate Email</label>
-              <input type="email" class="form-control" placeholder="jane@company.com" required>
+            <div class="form-group mb-0">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" value="password" />
             </div>
-            <div class="form-group">
-              <label class="form-label">Project Details</label>
-              <textarea class="form-control" rows="5" placeholder="Tell us about your technical challenges..." required></textarea>
-            </div>
-            <button type="submit" class="btn w-100">Submit Inquiry</button>
-          </form>
-        </div>
-      </div>
-    </section>
+          </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="logo">BrightPath Technologies</div>
-          <p>&copy; 2026 BrightPath Technologies. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+          <h3 class="mb-2">Navigation Bar</h3>
+          <div class="card mb-4 nav-preview flex items-center justify-between p-4">
+            <div class="font-bold">Brand</div>
+            <div class="flex gap-4">
+              <a href="#" class="caption">Features</a>
+              <a href="#" class="caption">Pricing</a>
+              <a href="#" class="caption">Docs</a>
+            </div>
+          </div>
+
+          <h3 class="mb-2">Tabs</h3>
+          <div class="card mb-4 p-0 overflow-hidden">
+            <div class="flex border-b">
+              <div class="tab active">Overview</div>
+              <div class="tab">Settings</div>
+              <div class="tab">Billing</div>
+            </div>
+            <div class="p-4">
+              <p class="m-0">Tab content panel.</p>
+            </div>
+          </div>
+
+          <h3 class="mb-2">Accordion</h3>
+          <div class="card p-0">
+            <div class="accordion-item p-4 border-b">
+              <div class="flex justify-between items-center">
+                <strong>What is the SLA?</strong>
+                <span>+</span>
+              </div>
+            </div>
+            <div class="accordion-item p-4">
+              <div class="flex justify-between items-center">
+                <strong>How does billing work?</strong>
+                <span>+</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Animations -->
+        <section id="animations" class="ds-section">
+          <h2>Easing Animations</h2>
+          <p>Micro-interactions to reinforce feedback loops without distraction.</p>
+          <div class="card flex gap-4">
+            <div class="anim-box hover-scale">Scale on Hover</div>
+            <div class="anim-box hover-lift">Lift on Hover</div>
+          </div>
+        </section>
+
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  methods: {
-    submitForm() {
-      alert('Thank you for your inquiry. Our technical team will reach out shortly.');
-    }
-  }
+  name: 'DesignSystem'
 }
 </script>
 
 <style scoped>
-.header {
+.ds-dashboard {
+  min-height: 100vh;
+}
+.ds-header {
   padding: var(--spacing-3) 0;
   border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
   position: sticky;
   top: 0;
-  background-color: rgba(2, 6, 23, 0.9);
-  backdrop-filter: blur(8px);
   z-index: 100;
 }
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-size: 1.25rem;
+.ds-logo {
   font-weight: 700;
-  color: var(--color-text);
+  font-size: var(--font-h4);
 }
-nav a {
-  margin-left: var(--spacing-4);
+.ds-logo span {
+  font-weight: 400;
   color: var(--color-text-muted);
-  font-weight: 500;
 }
-nav a:hover {
-  color: var(--color-text);
+.ds-version {
+  font-family: monospace;
+  font-size: var(--font-caption);
+  color: var(--color-text-muted);
+  background: var(--color-charcoal);
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
 }
-.nav-btn {
-  padding: var(--spacing-1) var(--spacing-2);
-  margin-left: var(--spacing-4);
-}
-.hero {
-  padding: 120px 0;
-  text-align: center;
-}
-.hero h1 {
-  font-size: 4rem;
-  max-width: 800px;
-  margin: 0 auto var(--spacing-4);
-}
-.hero p {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto var(--spacing-5);
-}
-.hero-actions {
+.ds-layout {
   display: flex;
-  justify-content: center;
-  gap: var(--spacing-3);
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  padding-top: var(--spacing-8);
+  padding-bottom: var(--spacing-8);
 }
-.bg-charcoal {
-  background-color: var(--color-charcoal);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+.ds-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 100px;
 }
-.text-center { text-align: center; }
-.text-muted { color: var(--color-text-muted); }
-.mb-4 { margin-bottom: var(--spacing-4); }
-.mb-2 { margin-bottom: var(--spacing-2); }
-.mt-4 { margin-top: var(--spacing-4); }
-.mt-2 { margin-top: var(--spacing-2); }
-.w-100 { width: 100%; }
-.company-logo {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-border);
-  padding: var(--spacing-4);
-}
-.tags {
-  margin-top: var(--spacing-3);
-}
-.tags-large .tag {
-  font-size: 1rem;
-  padding: 8px 16px;
-  margin: var(--spacing-1);
-}
-.pricing-card {
+.ds-sidebar nav {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-2);
 }
-.pricing-card.featured {
-  border-color: var(--color-blue);
-}
-.price {
-  font-size: 3rem;
-  font-weight: 700;
-  margin: var(--spacing-3) 0;
-}
-.price span {
-  font-size: 1rem;
+.ds-sidebar nav a {
   color: var(--color-text-muted);
+  font-weight: 500;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius);
+  margin-left: calc(var(--spacing-2) * -1);
 }
-.pricing-card ul {
-  list-style: none;
+.ds-sidebar nav a:hover {
+  background: var(--color-charcoal);
+  color: var(--color-text);
+}
+.ds-content {
   flex-grow: 1;
+  min-width: 0;
 }
-.pricing-card ul li {
-  padding: var(--spacing-2) 0;
+.ds-section {
+  margin-bottom: var(--spacing-12);
+}
+.color-card {
+  background: var(--color-slate);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.color-swatch {
+  height: 100px;
+  width: 100%;
+}
+.color-swatch.border {
   border-bottom: 1px solid var(--color-border);
+}
+.m-0 { margin: 0 !important; }
+.ml-2 { margin-left: var(--spacing-2); }
+.mt-1 { margin-top: var(--spacing-1); }
+.spacing-block {
+  height: 32px;
+  background-color: var(--color-blue);
+  border-radius: 2px;
+}
+.grid-col {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-2);
+  text-align: center;
+  border-radius: 2px;
+  font-size: var(--font-caption);
   color: var(--color-text-muted);
 }
-.pricing-card ul li:last-child {
+.border-b {
+  border-bottom: 1px solid var(--color-border);
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.font-bold {
+  font-weight: 700;
+}
+.nav-preview {
+  background: var(--color-charcoal);
+}
+.tab {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-caption);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.tab.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-blue);
+}
+.accordion-item:last-child {
   border-bottom: none;
 }
-.quote {
-  font-size: 1.125rem;
-  font-style: italic;
-  margin-bottom: var(--spacing-3);
-}
-.author {
-  font-weight: 600;
-}
-.contact-form-container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.footer {
-  padding: var(--spacing-6) 0;
-  border-top: 1px solid var(--color-border);
+.anim-box {
+  width: 120px;
+  height: 120px;
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  font-size: var(--font-caption);
+  cursor: pointer;
+  transition: var(--transition);
 }
-.footer-content p {
-  margin-top: var(--spacing-2);
-  margin-bottom: 0;
+.hover-scale:hover {
+  transform: scale(1.05);
+  border-color: var(--color-blue);
 }
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.5rem; }
-  .hero p { font-size: 1.125rem; }
-  .header-inner { flex-direction: column; gap: var(--spacing-3); }
-  nav a { margin: 0 var(--spacing-2); }
-  .nav-btn { display: none; }
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  border-color: var(--color-blue);
+}
+
+@media (max-width: 900px) {
+  .ds-layout {
+    flex-direction: column;
+  }
+  .ds-sidebar {
+    width: 100%;
+    position: static;
+  }
 }
 </style>
