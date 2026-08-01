@@ -18,9 +18,9 @@
 
   /* Typography Scale */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  --h1-size: 4rem; /* 64px */
-  --h2-size: 2.25rem; /* 36px */
-  --h3-size: 1.5rem; /* 24px */
+  --h1-size: 4.5rem;   /* 72px */
+  --h2-size: 3rem;     /* 48px */
+  --h3-size: 1.75rem;  /* 28px */
   --body-size: 1.125rem; /* 18px */
 
   /* Transition Definitions */
@@ -132,16 +132,17 @@ h3 {
 /* Responsive Font Scale */
 @media (max-width: 1024px) {
   :root {
-    --h1-size: 3rem; /* 48px */
-    --h2-size: 2rem;
-    --body-size: 1rem; /* 16px */
+    --h1-size: 3.5rem;   /* 56px */
+    --h2-size: 2.5rem;   /* 40px */
+    --h3-size: 1.5rem;   /* 24px */
+    --body-size: 1rem;   /* 16px */
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --h1-size: 2.125rem; /* 34px */
-    --h2-size: 1.75rem;
+    --h1-size: 2.5rem;   /* 40px */
+    --h2-size: 2rem;     /* 32px */
   }
 }
 
