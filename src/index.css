@@ -299,3 +299,47 @@ h3 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Technology Scroll Marquee */
+.tech-section {
+  padding: 6rem 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.tech-scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+
+.tech-scroll {
+  display: flex;
+  width: max-content;
+  animation: slide-infinite 30s linear infinite;
+  gap: 1.5rem;
+  white-space: nowrap;
+}
+
+.tech-logo-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--dark);
+  box-shadow: 0 4px 15px var(--shadow);
+  transition: var(--transition-fast);
+  cursor: default;
+}
+
+.tech-logo-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+

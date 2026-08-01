@@ -1362,20 +1362,43 @@ export default {
 .badge-3 { bottom: -5%; left: 10%; }
 
 /* Trusted Partners */
+.logo-marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.logo-marquee {
+  display: flex;
+  width: max-content;
+  animation: slide-infinite 20s linear infinite;
+  gap: 4rem;
+  white-space: nowrap;
+}
+
 .partner-logo {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--muted);
   opacity: 0.4;
+  flex-shrink: 0;
 }
 
 /* Bento Stats Grid */
+.stats-section {
+  position: relative;
+  z-index: 10;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .stats-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
+
 
 @media (max-width: 992px) {
   .stats-bento-grid {
@@ -1429,6 +1452,7 @@ export default {
   color: var(--muted);
   font-size: 1rem;
 }
+
 
 /* Asymmetric Capabilities Section */
 .asymmetric-layout {
