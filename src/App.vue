@@ -952,7 +952,7 @@ export default {
   color: var(--accent);
 }
 
-/* Header */
+/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -961,7 +961,7 @@ export default {
 }
 
 .navbar.scrolled {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1019,6 +1019,7 @@ export default {
 .nav-link {
   color: var(--muted);
   font-weight: 500;
+  font-size: 0.95rem;
   transition: var(--transition-fast);
 }
 
@@ -1064,24 +1065,33 @@ export default {
   }
 }
 
-/* Mobile Menu */
+/* Mobile Menu Drawer style */
 .mobile-menu {
   position: absolute;
   top: 80px;
   left: 0;
   width: 100%;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   border-bottom: 1px solid var(--border);
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Hero Section */
 .hero-section {
   overflow: hidden;
-  padding: 8rem 0;
+  padding: 6rem 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
 }
 
 .hero-grid-background {
@@ -1111,7 +1121,7 @@ export default {
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 .aurora-1 {
@@ -1151,6 +1161,7 @@ export default {
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 3rem;
   }
 }
 
@@ -1161,24 +1172,19 @@ export default {
 }
 
 .hero-title {
-  font-size: 4.5rem;
+  font-size: var(--h1-size);
   font-weight: 800;
   letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
-  }
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   color: var(--muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 540px;
+  line-height: 1.6;
 }
 
 @media (max-width: 992px) {
@@ -1191,7 +1197,7 @@ export default {
 .hero-actions {
   display: flex;
   gap: 1rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 @media (max-width: 992px) {
@@ -1200,12 +1206,22 @@ export default {
   }
 }
 
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
 .hero-metrics {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   border-top: 1px solid var(--border);
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 @media (max-width: 992px) {
@@ -1230,16 +1246,16 @@ export default {
 
 .hero-bento-glass {
   width: 100%;
-  max-width: 460px;
-  border-radius: 24px;
+  max-width: 440px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-  transition: transform 0.1s ease-out;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease-out;
 }
 
 .bento-header {
   background-color: rgba(15, 23, 42, 0.4);
-  padding: 1rem;
+  padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--border);
@@ -1247,12 +1263,12 @@ export default {
 
 .bento-dots {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .bento-dots span {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--border);
 }
@@ -1265,44 +1281,44 @@ export default {
 }
 
 .bento-body {
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: rgba(15, 23, 42, 0.2);
 }
 
 .code-panel {
   font-family: monospace;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--muted);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 2rem;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
 }
 
 .keyword { color: var(--secondary); }
 .string { color: var(--accent); }
 
 .bento-stats-panel {
-  padding: 1.25rem;
-  border-radius: 16px;
+  padding: 1rem;
+  border-radius: 12px;
 }
 
 .bento-stats-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .indicator-active {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--success);
-  box-shadow: 0 0 8px var(--success);
+  box-shadow: 0 0 6px var(--success);
 }
 
 .bento-metric-row {
@@ -1316,12 +1332,12 @@ export default {
 }
 
 .bento-metric-row .num {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
 }
 
 .bento-metric-row .subtext {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--muted);
 }
 
@@ -1336,15 +1352,18 @@ export default {
 
 .tech-tag {
   position: absolute;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
 }
 
-.badge-1 { top: 10%; left: -10%; }
+.badge-1 { top: 10%; left: -5%; }
 .badge-2 { bottom: 20%; right: -5%; }
-.badge-3 { bottom: -10%; left: 20%; }
+.badge-3 { bottom: -5%; left: 10%; }
 
 /* Trusted Partners */
 .partner-logo {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--muted);
   opacity: 0.4;
@@ -1355,7 +1374,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 @media (max-width: 992px) {
@@ -1365,19 +1384,19 @@ export default {
 }
 
 .stats-bento-card {
-  padding: 2.5rem;
-  border-radius: 24px;
+  padding: 2rem;
+  border-radius: 16px;
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 200px;
+  min-height: 180px;
   transition: var(--transition-smooth);
 }
 
 .stats-bento-card:hover {
   border-color: var(--primary);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .bento-large {
@@ -1401,14 +1420,14 @@ export default {
 }
 
 .bento-val {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .bento-lbl {
   color: var(--muted);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 /* Asymmetric Capabilities Section */
