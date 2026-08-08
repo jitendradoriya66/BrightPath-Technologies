@@ -550,7 +550,7 @@ export default {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 220;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -592,12 +592,7 @@ export default {
 @media (max-width: 768px) {
   .mobile-toggle { display: block; }
   .nav-cta {
-    padding: 8px 12px;
-    font-size: 0.875rem;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
   }
 }
 .hamburger {
@@ -626,15 +621,17 @@ export default {
 /* Mobile Menu Overlay */
 .mobile-menu-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  z-index: 300;
+  top: 4.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 210;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: calc(4.75rem + 1rem) 1rem 1rem;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .fade-blur-enter-active,
 .fade-blur-leave-active {
@@ -649,30 +646,39 @@ export default {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
+  align-items: stretch;
+  gap: 0.75rem;
 }
 .mobile-nav {
-  width: min(100%, 26rem);
-  padding: 2rem 1.5rem 2.5rem;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  width: 100%;
+  max-width: none;
+  padding: 1.25rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.22);
   box-shadow: var(--shadow-lg);
 }
 .mobile-nav-links a {
-  font-size: 2rem;
-  font-weight: 600;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: var(--surface-soft);
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--primary);
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 0.4s forwards;
   animation-delay: var(--delay);
+  text-align: left;
 }
 .mobile-nav-links .mobile-nav-cta {
-  font-size: 1.125rem;
-  margin-top: var(--space-2);
+  font-size: 1rem;
+  margin-top: 0.25rem;
   color: #fff;
+  background: var(--primary);
+  text-align: center;
 }
 @keyframes slideUp {
   to { opacity: 1; transform: translateY(0); }
@@ -907,7 +913,7 @@ export default {
 }
 
 .mobile-menu-overlay {
-  background: rgba(248, 250, 252, 0.94);
+  background: transparent;
 }
 
 .mobile-nav-links a {
