@@ -1,10 +1,10 @@
 <template>
-  <div class="app-shell">
+  <div class="app-shell" :class="{'no-scroll': mobileMenuOpen}">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="topbar" :class="{ scrolled: isScrolled }">
       <div class="container topbar-inner">
-        <a class="brand" href="#">BrightPath<span>Studio</span></a>
+        <a class="brand" href="#">BrightPath<span>Technologies</span></a>
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="#services">Services</a>
           <a href="#work">Work</a>
@@ -13,19 +13,25 @@
         </nav>
         <a class="btn btn-primary nav-cta" href="#contact">Book a call</a>
         <button class="mobile-toggle" @click="toggleMobileMenu" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-menu" aria-label="Toggle navigation">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <div class="hamburger" :class="{ 'is-active': mobileMenuOpen }">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
       </div>
-      <div v-if="mobileMenuOpen" id="mobile-menu" class="mobile-nav">
-        <div class="container mobile-nav-links">
-          <a href="#services" @click="mobileMenuOpen = false">Services</a>
-          <a href="#work" @click="mobileMenuOpen = false">Work</a>
-          <a href="#process" @click="mobileMenuOpen = false">Process</a>
-          <a href="#contact" @click="mobileMenuOpen = false">Contact</a>
+      <transition name="fade-blur">
+        <div v-if="mobileMenuOpen" class="mobile-menu-overlay" @click="closeMobileMenu">
+          <div class="mobile-nav" @click.stop id="mobile-menu" ref="mobileNav">
+            <div class="mobile-nav-links">
+              <a href="#services" @click="closeMobileMenu" style="--delay: 0.1s">Services</a>
+              <a href="#work" @click="closeMobileMenu" style="--delay: 0.2s">Work</a>
+              <a href="#process" @click="closeMobileMenu" style="--delay: 0.3s">Process</a>
+              <a href="#contact" @click="closeMobileMenu" style="--delay: 0.4s">Contact</a>
+            </div>
+          </div>
         </div>
-      </div>
+      </transition>
     </header>
 
     <main id="main">
@@ -33,225 +39,365 @@
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             <p class="eyebrow">Premium software for ambitious teams</p>
-            <h1 id="hero-heading">We build software that feels as expensive as the product behind it.</h1>
-            <p class="hero-text">From product strategy to launch-ready engineering, we create polished digital experiences that help companies win faster and feel unmistakably premium.</p>
+            <h1 id="hero-heading">We build custom web apps, AI platforms, and automation systems that help teams launch faster and grow with confidence.</h1>
+            <p class="hero-text">From concept to launch-ready product, we shape polished digital experiences around real business outcomes: faster onboarding, less manual work, and clearer momentum for the people using them.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Start your project <span aria-hidden="true">↗</span></a>
-              <a class="btn btn-secondary" href="#services">Explore capabilities</a>
+              <a class="btn btn-primary" href="#contact">Book a free consultation <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-secondary" href="#work">See case studies</a>
             </div>
-            <div class="hero-badges" aria-label="Focus areas">
-              <span>Product strategy</span>
-              <span>Custom engineering</span>
-              <span>Launch support</span>
+            <div class="hero-trust" aria-label="Trust indicators">
+              <div class="trust-pill">Custom web apps</div>
+              <div class="trust-pill">AI automation</div>
+              <div class="trust-pill">Fast delivery</div>
+            </div>
+            <div class="hero-logos" aria-label="Technology stack">
+              <span>React</span>
+              <span>Vue</span>
+              <span>Django</span>
+              <span>Python</span>
+              <span>Docker</span>
+              <span>AWS</span>
             </div>
           </div>
 
           <div class="hero-visual reveal" aria-hidden="true">
-            <div class="hero-orb orb-one"></div>
-            <div class="hero-orb orb-two"></div>
-            <div class="surface-card main-card">
-              <div class="card-top">
-                <span class="chip chip-primary">Live product</span>
-                <span class="chip">Q3 launch</span>
-              </div>
-              <div class="main-graph">
-                <div class="graph-line"></div>
-                <div class="graph-line short"></div>
-                <div class="graph-line"></div>
-              </div>
-              <div class="card-metrics">
-                <div>
-                  <strong>+318%</strong>
-                  <span>engagement</span>
+            <div class="dashboard-shell">
+              <div class="dashboard-topbar">
+                <div class="topbar-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
-                <div>
-                  <strong>98%</strong>
-                  <span>uptime</span>
-                </div>
+                <div class="topbar-title">Product Studio</div>
               </div>
-            </div>
-            <div class="surface-card floating-card one">
-              <p class="mini-label">AI orchestration</p>
-              <strong>Adaptive workflows</strong>
-            </div>
-            <div class="surface-card floating-card two">
-              <p class="mini-label">Revenue</p>
-              <strong>$4.2M pipeline</strong>
-            </div>
-            <div class="surface-card floating-card three">
-              <p class="mini-label">Team</p>
-              <strong>12 specialists online</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="logo-strip reveal">
-        <div class="container logo-strip-inner">
-          <p>Trusted by founders building the next category</p>
-          <div class="logo-row">
-            <span v-for="logo in logos" :key="logo">{{ logo }}</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="section reveal">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Capabilities</p>
-            <h2>Designed for companies that want more than a polished landing page.</h2>
-            <p>We blend strategy, product design, and engineering into a process that feels clear, fast, and deeply intentional.</p>
-          </div>
-          <div class="service-grid">
-            <article v-for="service in services" :key="service.title" class="service-card" :class="service.featured ? 'featured' : ''">
-              <div class="service-icon" :style="{ background: service.gradient }">{{ service.icon }}</div>
-              <h3>{{ service.title }}</h3>
-              <p>{{ service.description }}</p>
-              <a href="#contact">Learn more</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section reveal">
-        <div class="container metrics-panel">
-          <div v-for="stat in stats" :key="stat.label" class="metric-tile">
-            <strong>{{ stat.value }}</strong>
-            <span>{{ stat.label }}</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="section reveal">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Selected work</p>
-            <h2>Product launches engineered to feel effortless and premium.</h2>
-          </div>
-          <div class="work-grid">
-            <article class="work-card work-card-large">
-              <div class="work-visual">
-                <div class="browser-frame">
-                  <div class="browser-bar"><span></span><span></span><span></span></div>
-                  <div class="browser-body">
-                    <div class="browser-panel large"></div>
-                    <div class="browser-panel"></div>
-                    <div class="browser-panel"></div>
+              <div class="dashboard-body">
+                <aside class="dashboard-sidebar">
+                  <div class="sidebar-item active">Overview</div>
+                  <div class="sidebar-item">Roadmap</div>
+                  <div class="sidebar-item">CRM</div>
+                </aside>
+                <div class="dashboard-content">
+                  <div class="dashboard-heading">
+                    <div>
+                      <p class="mini-label">Launch readiness</p>
+                      <h3>Weekly momentum</h3>
+                    </div>
+                    <span class="status-pill">+18.2%</span>
+                  </div>
+                  <div class="dashboard-grid">
+                    <div class="dashboard-card wide">
+                      <div class="card-label">ARR trend</div>
+                      <div class="chart-bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="dashboard-card">3.2x conversion</div>
+                    <div class="dashboard-card">24/7 support</div>
+                    <div class="dashboard-card wide secondary">
+                      <div class="card-label">Team pulse</div>
+                      <ul>
+                        <li>Roadmap sync</li>
+                        <li>Client feedback</li>
+                        <li>QA complete</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="work-copy">
-                <p class="mini-label">Fintech platform</p>
-                <h3>Global payment intelligence for a modern operations team.</h3>
-                <p>We rebuilt a legacy experience into a sharper, more modular product that made transaction insight feel immediate and trustworthy.</p>
-                <div class="metric-row">
-                  <span>+300%</span>
-                  <span>+42% conversion</span>
-                  <span>98% retention</span>
+            </div>
+            <div class="floating-pill one">Design systems</div>
+            <div class="floating-pill two">Fast delivery</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo Strip (Marquee) -->
+      <section class="marquee-section border-y">
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <span v-for="n in 3" :key="n" class="marquee-group">
+              <span v-for="logo in logos" :key="logo + n" class="marquee-item">{{ logo }}</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services (Bento) -->
+      <section id="services" class="section bg-soft">
+        <div class="container">
+          <div class="section-heading mb-8">
+            <p class="eyebrow">Capabilities</p>
+            <h2>End-to-end engineering excellence</h2>
+            <p class="subtitle">We deliver premium software solutions designed to accelerate growth, optimize operations, and elevate customer experiences.</p>
+          </div>
+          
+          <div class="bento-grid">
+            <div class="bento-card bento-primary">
+              <div class="bento-content">
+                <h3>Enterprise Web Applications</h3>
+                <p>Scalable, secure, and performant web applications built with modern frameworks. We focus on maintainability, elegant architecture, and seamless user experiences that drive business value.</p>
+                <ul class="bento-list">
+                  <li>React & Vue ecosystems</li>
+                  <li>Microservices architecture</li>
+                  <li>High-availability infrastructure</li>
+                </ul>
+                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+              </div>
+            </div>
+            
+            <div class="bento-card">
+              <div class="bento-content">
+                <h3>AI & Automation Systems</h3>
+                <p>Integrating intelligent automation into your workflows to reduce manual overhead and unlock new capabilities.</p>
+                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+              </div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-content">
+                <h3>Cloud Native Architecture</h3>
+                <p>Resilient cloud infrastructure utilizing AWS, Docker, and Kubernetes for maximum uptime.</p>
+                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+              </div>
+            </div>
+            
+            <div class="bento-card bento-wide">
+              <div class="bento-content">
+                <h3>Product Design & Strategy</h3>
+                <p>We bridge the gap between business objectives and technical execution. Our design process ensures that every feature we build solves a real user problem, wrapped in a polished, intuitive interface.</p>
+                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="section border-y">
+        <div class="container">
+          <div class="trust-block">
+            <div class="trust-header">
+              <h2>Built on trust, quality, and rigorous process</h2>
+              <p>We don't just write code; we partner with you to engineer success. Our metrics speak for our commitment to excellence.</p>
+            </div>
+            <div class="trust-metrics">
+              <div class="metric-item">
+                <span class="metric-val">100%</span>
+                <span class="metric-label">In-house engineering</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">&lt;24h</span>
+                <span class="metric-label">Response time</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">0</span>
+                <span class="metric-label">Missed deadlines</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">99.9%</span>
+                <span class="metric-label">Uptime delivered</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Studies -->
+      <section id="work" class="section">
+        <div class="container">
+          <div class="section-heading mb-8">
+            <p class="eyebrow">Selected Work</p>
+            <h2>Proven results in production</h2>
+          </div>
+
+          <div class="work-showcase">
+            <div class="work-row">
+              <div class="work-info">
+                <h3>Fintech Operations Platform</h3>
+                <p><strong>Problem:</strong> Fragmented data systems causing 2-day delays in financial reporting.</p>
+                <p><strong>Solution:</strong> A centralized real-time dashboard unifying 5 disparate APIs with custom reconciliation logic.</p>
+                <div class="tech-badges">
+                  <span>Vue.js</span>
+                  <span>Node.js</span>
+                  <span>PostgreSQL</span>
+                </div>
+                <div class="work-results">
+                  <div class="res"><strong>98%</strong> reduction in manual entry</div>
+                  <div class="res"><strong>2x</strong> faster reporting</div>
                 </div>
               </div>
-            </article>
-            <article class="work-card">
-              <div class="work-copy">
-                <p class="mini-label">SaaS product</p>
-                <h3>AI workspace with onboarding that feels effortless from the first click.</h3>
-                <p>We paired interaction design with reliable engineering to ship a product that felt premium from day one.</p>
+              <div class="work-visual-mockup">
+                <div class="mockup-placeholder">Dashboard Mockup</div>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
+            </div>
 
-      <section id="process" class="section section-soft reveal">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Process</p>
-            <h2>A calm, decisive path from idea to launch.</h2>
-          </div>
-          <div class="timeline">
-            <div v-for="step in process" :key="step.title" class="timeline-step">
-              <div class="step-badge">0{{ step.index }}</div>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.description }}</p>
+            <div class="work-row reverse">
+              <div class="work-info">
+                <h3>AI-Powered SaaS Onboarding</h3>
+                <p><strong>Problem:</strong> High drop-off rates during complex enterprise software configuration.</p>
+                <p><strong>Solution:</strong> An intelligent conversational onboarding flow utilizing LLMs to auto-configure user environments.</p>
+                <div class="tech-badges">
+                  <span>React</span>
+                  <span>Python</span>
+                  <span>OpenAI</span>
+                </div>
+                <div class="work-results">
+                  <div class="res"><strong>+45%</strong> activation rate</div>
+                  <div class="res"><strong>3x</strong> lower support volume</div>
+                </div>
+              </div>
+              <div class="work-visual-mockup">
+                <div class="mockup-placeholder">Onboarding UI Mockup</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section reveal">
-        <div class="container testimonial-section">
-          <div class="testimonial-intro">
-            <p class="eyebrow">Testimonials</p>
-            <h2>Trusted by founders who care deeply about quality.</h2>
-            <p>Every engagement is shaped around speed, clarity, and a product that feels unmistakably polished.</p>
+      <!-- Process -->
+      <section id="process" class="section bg-soft border-y">
+        <div class="container">
+          <div class="section-heading text-center mb-8">
+            <p class="eyebrow">Our Methodology</p>
+            <h2>A disciplined approach to delivery</h2>
           </div>
-          <div class="testimonial-track">
-            <article v-for="testimonial in testimonials" :key="testimonial.name" class="testimonial-card">
-              <div class="rating">★★★★★</div>
-              <p>“{{ testimonial.quote }}”</p>
-              <div class="person">
-                <strong>{{ testimonial.name }}</strong>
-                <span>{{ testimonial.role }}</span>
-              </div>
-            </article>
+          <div class="process-timeline">
+            <div v-for="(step, i) in processSteps" :key="i" class="process-step">
+              <div class="step-num">0{{ i + 1 }}</div>
+              <h4>{{ step.title }}</h4>
+              <p>{{ step.desc }}</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="section reveal">
-        <div class="container contact-shell">
-          <div class="contact-copy">
-            <p class="eyebrow">Let’s build something exceptional</p>
-            <h2>Bring us your boldest idea and we’ll shape it into a product people remember.</h2>
-            <p>Whether you need a new platform, a thoughtful redesign, or a refined AI experience, we’ll help you move fast with clarity.</p>
-            <ul>
-              <li>Rapid discovery and product framing</li>
-              <li>Design-led engineering from day one</li>
-              <li>Reliable delivery with premium polish</li>
+      <!-- Technologies -->
+      <section class="section">
+        <div class="container">
+          <div class="section-heading mb-6">
+            <p class="eyebrow">Technology Stack</p>
+            <h2>Enterprise-grade tools</h2>
+          </div>
+          <div class="tech-ecosystem">
+            <div class="tech-category" v-for="(cat, name) in technologies" :key="name">
+              <h4>{{ name }}</h4>
+              <div class="tech-tags">
+                <span v-for="tech in cat" :key="tech">{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="section bg-soft border-y">
+        <div class="container">
+          <div class="section-heading mb-6">
+            <h2>Client success stories</h2>
+          </div>
+          <div class="testimonial-grid">
+            <div v-for="(t, i) in testimonials" :key="i" class="testimonial-box">
+              <div class="stars">★★★★★</div>
+              <p class="quote">"{{ t.quote }}"</p>
+              <div class="author">
+                <div class="avatar"></div>
+                <div>
+                  <strong>{{ t.name }}</strong>
+                  <span>{{ t.role }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Accordion -->
+      <section class="section">
+        <div class="container">
+          <div class="section-heading mb-6">
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div class="faq-list">
+            <details v-for="(faq, i) in faqs" :key="i" class="faq-item">
+              <summary class="faq-question">{{ faq.q }} <span class="icon">+</span></summary>
+              <div class="faq-answer"><p>{{ faq.a }}</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact / CTA -->
+      <section id="contact" class="section cta-section bg-dark text-light">
+        <div class="container cta-grid">
+          <div class="cta-copy">
+            <h2>Have an idea? Let's build it.</h2>
+            <p>Get in touch for a technical consultation. We review your requirements and provide a clear roadmap within 24 hours.</p>
+            <ul class="cta-benefits">
+              <li>✓ NDA protected</li>
+              <li>✓ No commitment required</li>
+              <li>✓ Technical feasibility review</li>
             </ul>
           </div>
-          <form class="contact-form" @submit.prevent="submitForm">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input ref="nameInput" id="name" type="text" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Work email</label>
-              <input ref="emailInput" id="email" type="email" required />
-            </div>
-            <div class="form-group">
-              <label for="message">What are you building?</label>
-              <textarea ref="messageInput" id="message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Request consultation</button>
-          </form>
+          <div class="cta-form-container">
+            <form class="cta-form" @submit.prevent="submitForm">
+              <div class="form-row">
+                <label>Name</label>
+                <input type="text" required placeholder="Jane Doe" />
+              </div>
+              <div class="form-row">
+                <label>Work Email</label>
+                <input type="email" required placeholder="jane@company.com" />
+              </div>
+              <div class="form-row">
+                <label>Project Details</label>
+                <textarea rows="4" required placeholder="Tell us about what you're building..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-full">Request Consultation</button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <a class="brand footer-brand" href="#">BrightPath</a>
-          <p>High-end software design and development for ambitious product teams.</p>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div class="footer-brand">
+          <a class="brand" href="#">BrightPath<span>Technologies</span></a>
+          <p>Premium software engineering and design for ambitious companies scaling their digital footprint.</p>
         </div>
-        <div>
-          <h3>Explore</h3>
-          <a href="#services">Services</a>
-          <a href="#work">Selected work</a>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services">Web Applications</a>
+          <a href="#services">AI Automation</a>
+          <a href="#services">Cloud Architecture</a>
+          <a href="#services">Product Design</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#work">Work</a>
           <a href="#process">Process</a>
+          <a href="#">About</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div>
-          <h3>Contact</h3>
-          <a href="#contact">Book a call</a>
-          <a href="#contact">hello@brightpath.dev</a>
-          <a href="#contact">+1 (555) 014-2030</a>
+        <div class="footer-contact">
+          <h4>Subscribe</h4>
+          <p>Get technical insights delivered monthly.</p>
+          <div class="newsletter">
+            <input type="email" placeholder="Email address" />
+            <button class="btn btn-primary">Join</button>
+          </div>
         </div>
-        <div>
-          <h3>Follow</h3>
-          <a href="#">LinkedIn</a>
-          <a href="#">X</a>
-          <a href="#">Dribbble</a>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 BrightPath Technologies. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
         </div>
       </div>
     </footer>
@@ -265,91 +411,80 @@ export default {
     return {
       mobileMenuOpen: false,
       isScrolled: false,
-      logos: ['Nova Labs', 'Northstar', 'Aurelia', 'Helio', 'Lattice'],
-      services: [
-        {
-          title: 'Product strategy',
-          description: 'Experience design, positioning, and roadmap framing that makes the product feel inevitable.',
-          icon: '✦',
-          gradient: 'linear-gradient(135deg, #6D28D9, #7C3AED)',
-          featured: true
-        },
-        {
-          title: 'AI experiences',
-          description: 'Workflow design and intelligent interfaces that feel calm, useful, and deeply crafted.',
-          icon: '◌',
-          gradient: 'linear-gradient(135deg, #06B6D4, #2563eb)'
-        },
-        {
-          title: 'Custom product engineering',
-          description: 'Reliable frontends and robust systems built for rapid iteration and long-term scale.',
-          icon: '⬢',
-          gradient: 'linear-gradient(135deg, #FF6B35, #F59E0B)'
-        },
-        {
-          title: 'Launch enablement',
-          description: 'Rollout support, analytics, and growth systems that keep momentum going after launch.',
-          icon: '↗',
-          gradient: 'linear-gradient(135deg, #10B981, #34D399)',
-          featured: true
-        }
+      logos: ['Acme Corp', 'GlobalTech', 'Nexus', 'Vertex', 'Zephyr', 'Quantum', 'Starlight'],
+      processSteps: [
+        { title: 'Discovery', desc: 'Understanding your business logic, constraints, and objectives.' },
+        { title: 'Architecture', desc: 'Designing scalable infrastructure and data models.' },
+        { title: 'Prototyping', desc: 'Rapid UI/UX iteration to validate workflows.' },
+        { title: 'Development', desc: 'Rigorous engineering with automated testing.' },
+        { title: 'Deployment', desc: 'Zero-downtime releases and CI/CD pipelines.' },
+        { title: 'Maintenance', desc: 'Ongoing monitoring and proactive optimizations.' }
       ],
-      stats: [
-        { value: '12+', label: 'launches delivered this year' },
-        { value: '4.9/5', label: 'client satisfaction score' },
-        { value: '98%', label: 'retention across milestone releases' },
-        { value: '24h', label: 'average response time' }
-      ],
-      process: [
-        { index: 1, title: 'Discover', description: 'We define the opportunity and shape the product experience around what matters most.' },
-        { index: 2, title: 'Design', description: 'We turn strategy into elegant interaction patterns and a clear product narrative.' },
-        { index: 3, title: 'Build', description: 'We engineer the experience with speed, reliability, and careful quality bar.' },
-        { index: 4, title: 'Scale', description: 'We refine analytics, rollout, and iteration loops so the product keeps winning.' }
-      ],
+      technologies: {
+        'Frontend': ['React', 'Vue', 'TypeScript', 'Tailwind', 'Next.js'],
+        'Backend': ['Node.js', 'Python', 'Django', 'Go', 'GraphQL'],
+        'Database': ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch'],
+        'Cloud & DevOps': ['AWS', 'Docker', 'Kubernetes', 'GitHub Actions']
+      },
       testimonials: [
-        {
-          name: 'Mara Chen',
-          role: 'Founder, Oriel AI',
-          quote: 'The experience felt unmistakably premium from the first presentation through launch. Every detail was considered.'
-        },
-        {
-          name: 'Alex Rivera',
-          role: 'VP Product, Northstar Labs',
-          quote: 'They translated a complex product vision into something beautiful, intuitive, and ready for real users.'
-        }
+        { quote: "Their technical depth and design precision completely transformed our internal tooling.", name: "Sarah Jenkins", role: "CTO, Finova" },
+        { quote: "BrightPath delivered our MVP 3 weeks ahead of schedule with zero critical bugs.", name: "David Chen", role: "Founder, ScaleAI" },
+        { quote: "A true engineering partner. They didn't just build what we asked, they built what we needed.", name: "Elena Rostova", role: "VP Product, Nexus" }
+      ],
+      faqs: [
+        { q: "How do you handle project pricing?", a: "We provide detailed scoping during discovery, offering both fixed-bid for defined scopes and T&M for agile, evolving projects." },
+        { q: "Do you maintain the software after launch?", a: "Yes, we offer flexible SLA-backed maintenance and continuous improvement retainers." },
+        { q: "How do you ensure code quality?", a: "We enforce strict PR reviews, comprehensive automated testing (unit/integration/E2E), and CI/CD pipelines on every project." }
       ]
     }
   },
   mounted() {
-    this.observeReveal()
     this.handleScroll()
-    window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
+    window.addEventListener('resize', this.handleResize, { passive: true })
+    window.addEventListener('keydown', this.handleKeydown)
+    this.observeReveal()
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('resize', this.handleResize)
-    if (this.revealObserver) {
-      this.revealObserver.disconnect()
+    window.removeEventListener('keydown', this.handleKeydown)
+    if (this.revealObserver) this.revealObserver.disconnect()
+  },
+  watch: {
+    mobileMenuOpen(val) {
+      if (val) {
+        document.body.classList.add('no-scroll')
+      } else {
+        document.body.classList.remove('no-scroll')
+      }
     }
   },
   methods: {
     toggleMobileMenu() {
       this.mobileMenuOpen = !this.mobileMenuOpen
     },
+    closeMobileMenu() {
+      this.mobileMenuOpen = false
+    },
+    handleKeydown(e) {
+      if (e.key === 'Escape' && this.mobileMenuOpen) {
+        this.closeMobileMenu()
+      }
+    },
     handleScroll() {
-      this.isScrolled = window.scrollY > 12
+      this.isScrolled = window.scrollY > 10
     },
     handleResize() {
-      if (window.innerWidth > 768) {
-        this.mobileMenuOpen = false
+      if (window.innerWidth > 768 && this.mobileMenuOpen) {
+        this.closeMobileMenu()
       }
     },
+    submitForm() {
+      alert('Thanks for your inquiry. Our team will contact you shortly.')
+    },
     observeReveal() {
-      if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-        document.querySelectorAll('.reveal').forEach((item) => item.classList.add('visible'))
-        return
-      }
+      if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
       this.revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -357,911 +492,289 @@ export default {
             this.revealObserver.unobserve(entry.target)
           }
         })
-      }, { threshold: 0.16 })
-      document.querySelectorAll('.reveal').forEach((item) => {
-        this.revealObserver.observe(item)
-      })
-    },
-    submitForm() {
-      const name = this.$refs.nameInput.value.trim()
-      const email = this.$refs.emailInput.value.trim()
-      const message = this.$refs.messageInput.value.trim()
-      if (!name || !email || !message) {
-        alert('Please complete all fields before submitting.')
-        return
-      }
-      alert('Thanks for reaching out. We will contact you within one business day.')
-      this.$refs.nameInput.value = ''
-      this.$refs.emailInput.value = ''
-      this.$refs.messageInput.value = ''
+      }, { threshold: 0.1 })
+      document.querySelectorAll('.reveal').forEach((item) => this.revealObserver.observe(item))
     }
   }
 }
 </script>
 
-<style scoped>
-.app-shell {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #f8fafc 0%, #f3f7ff 100%);
-  color: var(--text);
-  overflow-x: hidden;
-}
+<style>
+/* Base Styles & Utilities */
+.bg-soft { background: var(--surface-soft); }
+.bg-dark { background: var(--primary); color: #fff; }
+.text-light { color: #fff; }
+.border-y { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
 
-.container {
-  width: min(100%, 1320px);
-  margin: 0 auto;
-  padding: 0 1.4rem;
-}
-
-.section {
-  padding: 6.4rem 0;
-}
-
-.section-soft {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 255, 0.96));
-  border-block: 1px solid rgba(15, 23, 42, 0.06);
-}
-
+/* Skip Link */
 .skip-link {
   position: absolute;
-  left: 1rem;
-  top: -3.5rem;
-  z-index: 300;
-  padding: 0.8rem 1rem;
-  border-radius: 999px;
+  top: -40px;
+  left: 16px;
   background: var(--primary);
   color: #fff;
+  padding: 8px 16px;
+  z-index: 999;
 }
+.skip-link:focus { top: 16px; }
 
-.skip-link:focus {
-  top: 1rem;
-}
-
+/* Topbar */
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 200;
-  padding: 1rem 0;
-  background: rgba(248, 250, 252, 0.76);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: var(--trans);
 }
-
 .topbar.scrolled {
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-
 .topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  height: 72px;
 }
-
 .brand {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
 }
-
-.brand span {
-  color: var(--primary);
+.brand span { color: var(--accent); }
+.site-nav { display: flex; gap: var(--space-4); }
+.site-nav a { font-weight: 500; transition: color 0.2s; }
+.site-nav a:hover { color: var(--primary); }
+@media (max-width: 768px) {
+  .site-nav, .nav-cta { display: none; }
 }
-
-.site-nav {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.site-nav a,
-.mobile-nav-links a {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  transition: var(--trans);
-}
-
-.site-nav a:hover,
-.mobile-nav-links a:hover,
-.site-nav a:focus-visible,
-.mobile-nav-links a:focus-visible {
-  color: var(--primary);
-}
-
-.nav-cta {
-  padding: 0.82rem 1rem;
-}
-
 .mobile-toggle {
   display: none;
+  z-index: 101;
+}
+@media (max-width: 768px) {
+  .mobile-toggle { display: block; }
+}
+.hamburger {
+  width: 24px;
+  height: 20px;
+  position: relative;
+}
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: var(--primary);
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transition: .25s ease-in-out;
+}
+.hamburger span:nth-child(1) { top: 0px; }
+.hamburger span:nth-child(2) { top: 9px; }
+.hamburger span:nth-child(3) { top: 18px; }
+.hamburger.is-active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; left: -20px; }
+.hamburger.is-active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
 }
-
-.mobile-nav {
-  background: rgba(255, 255, 255, 0.95);
-  border-top: 1px solid var(--border);
+.fade-blur-enter-active,
+.fade-blur-leave-active {
+  transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
 }
-
+.fade-blur-enter-from,
+.fade-blur-leave-to {
+  opacity: 0;
+  backdrop-filter: blur(0px);
+}
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  padding: 1rem 0 1.2rem;
+  align-items: center;
+  gap: var(--space-4);
+}
+.mobile-nav-links a {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.4s forwards;
+  animation-delay: var(--delay);
+}
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* Hero Section */
 .hero {
-  padding-top: 5.4rem;
-  padding-bottom: 4.4rem;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-10);
 }
-
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
   align-items: center;
 }
-
-.eyebrow {
-  display: inline-flex;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.hero h1 {
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.045em;
-  margin-bottom: 1.3rem;
-  max-width: 760px;
-}
-
-.hero-text {
-  font-size: 1.12rem;
-  line-height: 1.8;
-  color: var(--text-muted);
-  max-width: 660px;
-  margin-bottom: 1.8rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  border-radius: 999px;
-  font-weight: 700;
-  border: 1px solid transparent;
-  transition: var(--trans);
-  text-decoration: none;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  padding: 0.95rem 1.2rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
-  color: white;
-  box-shadow: 0 16px 32px rgba(109, 40, 217, 0.22);
-}
-
-.btn-secondary {
-  padding: 0.95rem 1.2rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text);
-  border-color: var(--border);
-}
-
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.hero-badges span {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.hero-visual {
-  position: relative;
-  min-height: 560px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-visual::before,
-.hero-visual::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 2rem;
-  pointer-events: none;
-}
-
-.hero-visual::before {
-  background: radial-gradient(circle at top left, rgba(109, 40, 217, 0.16), transparent 45%), radial-gradient(circle at bottom right, rgba(255, 107, 53, 0.14), transparent 38%);
-}
-
-.hero-visual::after {
-  background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 100%);
-}
-
-.surface-card {
-  position: absolute;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12);
-  border-radius: 1.5rem;
-}
-
-.main-card {
-  width: min(100%, 450px);
-  padding: 1.15rem;
-  z-index: 2;
-  transform: rotate(-2deg);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-}
-
-.chip {
-  display: inline-flex;
-  padding: 0.4rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.05);
-  color: var(--text-muted);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.chip-primary {
-  background: rgba(109, 40, 217, 0.12);
-  color: var(--primary);
-}
-
-.main-graph {
-  border-radius: 1.2rem;
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.12), rgba(6, 182, 212, 0.16));
-  padding: 1rem;
-  display: grid;
-  gap: 0.7rem;
-  min-height: 220px;
-}
-
-.graph-line {
-  height: 16px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-.graph-line.short {
-  width: 72%;
-}
-
-.card-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
-
-.card-metrics div {
-  padding: 0.9rem;
-  border-radius: 1rem;
-  background: #fff;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-}
-
-.card-metrics strong {
-  display: block;
-  font-size: 1.1rem;
-  color: var(--text);
-}
-
-.card-metrics span {
-  color: var(--text-muted);
-  font-size: 0.84rem;
-}
-
-.floating-card {
-  padding: 0.95rem 1rem;
-  z-index: 3;
-  animation: bob 5s ease-in-out infinite;
-}
-
-.floating-card.one {
-  top: 3.2rem;
-  right: 0.8rem;
-}
-
-.floating-card.two {
-  bottom: 2rem;
-  right: 0.6rem;
-  animation-delay: 1s;
-}
-
-.floating-card.three {
-  bottom: 4rem;
-  left: 0.3rem;
-  animation-delay: 1.8s;
-}
-
-.mini-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--primary);
-  margin-bottom: 0.3rem;
-}
-
-.logo-strip {
-  padding-top: 0;
-  padding-bottom: 2rem;
-}
-
-.logo-strip-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.3rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid var(--border);
-}
-
-.logo-strip-inner p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.logo-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.logo-row span {
-  padding: 0.5rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.04);
-  color: var(--text);
-  font-weight: 700;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin-bottom: 2.2rem;
-}
-
-.section-heading h2 {
-  font-size: clamp(1.8rem, 3vw, 2.45rem);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.03em;
-}
-
-.section-heading p {
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
-}
-
-.service-card {
-  position: relative;
-  overflow: hidden;
-  padding: 1.45rem;
-  border-radius: 1.45rem;
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.96));
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-  transition: var(--trans);
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
-  pointer-events: none;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 40px rgba(109, 40, 217, 0.16);
-}
-
-.service-card.featured {
-  grid-column: span 2;
-}
-
-.service-icon {
-  width: 3.2rem;
-  height: 3.2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1.1rem;
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.service-card h3 {
-  font-size: 1.22rem;
-  margin-bottom: 0.7rem;
-}
-
-.service-card p {
-  color: var(--text-muted);
-  line-height: 1.75;
-  margin-bottom: 1rem;
-}
-
-.service-card a {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.metrics-panel {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.metric-tile {
-  padding: 1.5rem;
-  border-radius: 1.3rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-}
-
-.metric-tile strong {
-  display: block;
-  font-size: 1.55rem;
-  color: var(--text);
-  margin-bottom: 0.3rem;
-}
-
-.metric-tile span {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.work-grid {
-  display: grid;
-  gap: 1.1rem;
-}
-
-.work-card {
-  border-radius: 1.55rem;
-  padding: 1.35rem;
-  background: rgba(255, 255, 255, 0.93);
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
-}
-
-.work-card-large {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 1.2rem;
-  align-items: center;
-}
-
-.work-visual {
-  border-radius: 1.25rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.12), rgba(6, 182, 212, 0.12));
-  min-height: 280px;
-}
-
-.browser-frame {
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 1rem;
-  background: #fff;
-  overflow: hidden;
-}
-
-.browser-bar {
-  height: 12px;
-  background: rgba(15, 23, 42, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0 0.8rem;
-}
-
-.browser-bar span {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.2);
-}
-
-.browser-body {
-  padding: 1rem;
-  display: grid;
-  gap: 0.7rem;
-}
-
-.browser-panel {
-  height: 54px;
-  border-radius: 0.8rem;
-  background: linear-gradient(90deg, var(--primary), rgba(109, 40, 217, 0.2));
-}
-
-.browser-panel.large {
-  height: 90px;
-  background: linear-gradient(90deg, var(--accent), rgba(255, 107, 53, 0.18));
-}
-
-.work-copy h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.work-copy p {
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-
-.metric-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1rem;
-}
-
-.metric-row span {
-  padding: 0.45rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(109, 40, 217, 0.08);
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.timeline-step {
-  padding: 1.2rem;
-  border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-}
-
-.timeline-step h3 {
-  margin-bottom: 0.55rem;
-}
-
-.timeline-step p {
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-
-.step-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 0.85rem;
-}
-
-.testimonial-section {
-  display: grid;
-  grid-template-columns: 0.88fr 1.12fr;
-  gap: 1.2rem;
-  align-items: start;
-}
-
-.testimonial-intro h2 {
-  font-size: clamp(1.8rem, 3vw, 2.35rem);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.03em;
-}
-
-.testimonial-intro p {
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-
-.testimonial-track {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.testimonial-card {
-  padding: 1.2rem;
-  border-radius: 1.2rem;
-  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(244,247,255,0.96));
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
-}
-
-.rating {
-  color: var(--accent);
-  letter-spacing: 0.24em;
-  font-size: 0.9rem;
-  margin-bottom: 0.8rem;
-}
-
-.testimonial-card p {
-  color: var(--text-muted);
-  line-height: 1.76;
-  margin-bottom: 0.9rem;
-}
-
-.person {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.person span {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.contact-shell {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 1.3rem;
-  align-items: start;
-}
-
-.contact-copy {
-  padding: 1.2rem 0;
-}
-
-.contact-copy h2 {
-  font-size: clamp(1.8rem, 3vw, 2.35rem);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.03em;
-}
-
-.contact-copy p,
-.contact-copy li {
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-
-.contact-copy ul {
-  display: grid;
-  gap: 0.7rem;
-  padding-left: 1rem;
-  margin-top: 1rem;
-}
-
-.contact-form {
-  padding: 1.25rem;
-  border-radius: 1.4rem;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--border);
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
-}
-
-.form-group {
-  margin-bottom: 0.95rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.45rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 0.95rem;
-  padding: 0.85rem 0.95rem;
-  background: #fff;
-  color: var(--text);
-  font: inherit;
-  transition: var(--trans);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.12);
-}
-
-.footer {
-  padding: 3rem 0 2.6rem;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.99));
-  color: rgba(248, 250, 252, 0.75);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
-  gap: 1rem;
-}
-
-.footer-brand {
-  display: inline-flex;
-  margin-bottom: 0.7rem;
-  color: #fff;
-}
-
-.footer h3 {
-  color: #fff;
-  font-size: 0.95rem;
-  margin-bottom: 0.7rem;
-}
-
-.footer a {
-  display: block;
-  color: rgba(248, 250, 252, 0.74);
-  margin-bottom: 0.45rem;
-  transition: var(--trans);
-}
-
-.footer a:hover {
-  color: #fff;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 700ms ease, transform 700ms ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@media (max-width: 960px) {
-  .hero-grid,
-  .testimonial-section,
-  .contact-shell,
-  .work-card-large {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    min-height: 460px;
-  }
-
-  .timeline {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .site-nav,
-  .nav-cta {
-    display: none;
-  }
-
-  .mobile-toggle {
-    display: inline-flex;
-  }
-
-  .section {
-    padding: 4.4rem 0;
-  }
-
-  .service-grid,
-  .metrics-panel,
-  .timeline {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card.featured {
-    grid-column: span 1;
-  }
-
-  .logo-strip-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 1.2rem;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .hero h1 {
-    font-size: 2.55rem;
-  }
-
-  .hero-visual {
-    min-height: 380px;
-  }
-
-  .main-card {
-    width: 92%;
-  }
-
-  .floating-card.one {
-    top: 1.6rem;
-    right: 0.4rem;
-  }
-
-  .floating-card.two {
-    bottom: 0.7rem;
-    right: 0.2rem;
-  }
-
-  .floating-card.three {
-    bottom: 2.4rem;
-    left: 0;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 992px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: var(--space-3); }
+.hero-text { font-size: 1.125rem; margin-bottom: var(--space-4); max-width: 540px; }
+.hero-actions { display: flex; gap: var(--space-2); margin-bottom: var(--space-4); }
+@media (max-width: 480px) { .hero-actions { flex-direction: column; } }
+.hero-trust { display: flex; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap; }
+.trust-pill { font-size: 0.875rem; border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; }
+.hero-logos { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.hero-logos span { font-size: 0.875rem; font-weight: 600; padding: 4px 12px; background: var(--surface-soft); border-radius: 4px; }
+.hero-visual { position: relative; }
+.dashboard-shell { border: 1px solid var(--border); border-radius: 8px; background: #fff; box-shadow: 0 24px 48px rgba(0,0,0,0.05); padding: var(--space-2); }
+.dashboard-topbar { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
+.topbar-dots span { display: inline-block; width: 10px; height: 10px; background: var(--border-strong); border-radius: 50%; margin-right: 6px; }
+.dashboard-body { display: grid; grid-template-columns: 100px 1fr; gap: var(--space-2); }
+.sidebar-item { font-size: 0.75rem; padding: 4px 8px; margin-bottom: 4px; border-radius: 4px; }
+.sidebar-item.active { background: var(--surface-alt); font-weight: 600; }
+.dashboard-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); }
+.status-pill { font-size: 0.75rem; background: #ecfdf5; color: #059669; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
+.dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+.dashboard-card { border: 1px solid var(--border); padding: var(--space-2); border-radius: 6px; font-size: 0.875rem; font-weight: 600; }
+.dashboard-card.wide { grid-column: span 2; }
+.card-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+.chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin-top: 8px; }
+.chart-bars span { flex: 1; background: var(--primary); border-radius: 2px 2px 0 0; }
+.chart-bars span:nth-child(1) { height: 40%; }
+.chart-bars span:nth-child(2) { height: 60%; }
+.chart-bars span:nth-child(3) { height: 50%; }
+.chart-bars span:nth-child(4) { height: 80%; }
+.chart-bars span:nth-child(5) { height: 100%; }
+.floating-pill { position: absolute; padding: 8px 16px; background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 999px; font-size: 0.875rem; font-weight: 600; z-index: 10; }
+.floating-pill.one { top: -20px; right: 20px; }
+.floating-pill.two { bottom: -20px; left: -20px; }
+
+/* Marquee */
+.marquee-section { padding: var(--space-3) 0; overflow: hidden; background: #fafafa; }
+.marquee-container { display: flex; white-space: nowrap; }
+.marquee-track { display: flex; animation: marquee 20s linear infinite; }
+.marquee-group { display: flex; gap: var(--space-6); padding-right: var(--space-6); }
+.marquee-item { font-size: 1.25rem; font-weight: 700; color: var(--border-strong); }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } }
+
+/* Bento Grid */
+.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+.bento-card { border: 1px solid var(--border); border-radius: 12px; padding: var(--space-4); background: #fff; transition: var(--trans); }
+.bento-card:hover { border-color: var(--border-strong); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+.bento-primary { grid-column: span 2; grid-row: span 2; background: var(--surface-alt); border: none; }
+.bento-wide { grid-column: span 2; }
+@media (max-width: 992px) { .bento-grid, .bento-primary, .bento-wide { grid-template-columns: 1fr; grid-column: span 1; } }
+.bento-content h3 { margin-bottom: var(--space-2); }
+.bento-list { margin: var(--space-2) 0; padding-left: var(--space-3); font-weight: 500; }
+.link-cta { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--primary); margin-top: var(--space-2); }
+.link-cta span { transition: transform 0.2s; }
+.link-cta:hover span { transform: translateX(4px); }
+
+/* Trust Block */
+.trust-block { display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--space-6); align-items: center; }
+@media (max-width: 768px) { .trust-block { grid-template-columns: 1fr; } }
+.trust-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.metric-item { border-left: 2px solid var(--primary); padding-left: var(--space-2); }
+.metric-val { display: block; font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 4px; }
+.metric-label { font-size: 0.9rem; font-weight: 500; }
+
+/* Case Studies */
+.work-showcase { display: grid; gap: var(--space-8); }
+.work-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: center; }
+.work-row.reverse .work-info { order: 2; }
+.work-row.reverse .work-visual-mockup { order: 1; }
+@media (max-width: 768px) { .work-row, .work-row.reverse { grid-template-columns: 1fr; } .work-row.reverse .work-info { order: 1; } .work-row.reverse .work-visual-mockup { order: 2; } }
+.tech-badges { display: flex; gap: var(--space-1); margin-bottom: var(--space-3); flex-wrap: wrap; }
+.tech-badges span { font-size: 0.75rem; font-weight: 600; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; }
+.work-results { display: flex; gap: var(--space-3); border-top: 1px solid var(--border); padding-top: var(--space-3); margin-top: var(--space-3); }
+.work-results .res { font-size: 0.9rem; }
+.work-results strong { font-size: 1.25rem; color: var(--primary); display: block; }
+.work-visual-mockup { background: var(--surface-alt); border-radius: 12px; height: 320px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); }
+.mockup-placeholder { font-weight: 600; color: var(--border-strong); }
+
+/* Process */
+.process-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+@media (max-width: 768px) { .process-timeline { grid-template-columns: 1fr; } }
+.process-step { border: 1px solid var(--border); padding: var(--space-3); border-radius: 8px; position: relative; background: #fff; }
+.step-num { font-size: 0.8rem; font-weight: 700; color: var(--border-strong); margin-bottom: var(--space-2); }
+
+/* Tech */
+.tech-ecosystem { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+@media (max-width: 992px) { .tech-ecosystem { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .tech-ecosystem { grid-template-columns: 1fr; } }
+.tech-category h4 { margin-bottom: var(--space-2); font-size: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.tech-tags span { font-size: 0.85rem; padding: 4px 8px; background: var(--surface-alt); border-radius: 4px; }
+
+/* Testimonials */
+.testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+@media (max-width: 992px) { .testimonial-grid { grid-template-columns: 1fr; } }
+.testimonial-box { border: 1px solid var(--border); padding: var(--space-4); border-radius: 12px; background: #fff; }
+.stars { color: #eab308; margin-bottom: var(--space-2); font-size: 1.25rem; }
+.quote { font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: var(--space-4); }
+.author { display: flex; align-items: center; gap: var(--space-2); }
+.avatar { width: 40px; height: 40px; background: var(--surface-alt); border-radius: 50%; }
+.author strong { display: block; font-size: 0.95rem; }
+.author span { font-size: 0.85rem; color: var(--text-muted); }
+
+/* FAQ */
+.faq-list { border-top: 1px solid var(--border); }
+.faq-item { border-bottom: 1px solid var(--border); padding: var(--space-3) 0; }
+.faq-question { font-weight: 600; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question .icon { font-size: 1.5rem; color: var(--border-strong); transition: var(--trans); }
+.faq-item[open] .icon { transform: rotate(45deg); }
+.faq-answer { padding-top: var(--space-2); color: var(--text-muted); }
+
+/* CTA */
+.cta-section { padding: var(--space-10) 0; }
+.cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+@media (max-width: 768px) { .cta-grid { grid-template-columns: 1fr; } }
+.cta-copy h2 { color: #fff; margin-bottom: var(--space-2); }
+.cta-copy p { font-size: 1.1rem; opacity: 0.9; margin-bottom: var(--space-4); }
+.cta-benefits { list-style: none; display: grid; gap: var(--space-1); font-weight: 500; }
+.cta-form-container { background: #fff; padding: var(--space-4); border-radius: 12px; color: var(--text); }
+.cta-form .form-row { margin-bottom: var(--space-3); }
+.cta-form label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.cta-form input, .cta-form textarea { width: 100%; border: 1px solid var(--border); padding: 12px; border-radius: 6px; font: inherit; }
+.cta-form input:focus, .cta-form textarea:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
+
+/* Footer */
+.site-footer { padding: var(--space-10) 0 var(--space-4); background: var(--surface-alt); border-top: 1px solid var(--border); }
+.footer-layout { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: var(--space-6); margin-bottom: var(--space-8); }
+@media (max-width: 992px) { .footer-layout { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-layout { grid-template-columns: 1fr; } }
+.footer-brand p { margin-top: var(--space-2); font-size: 0.95rem; }
+.footer-links h4, .footer-contact h4 { margin-bottom: var(--space-3); font-size: 1rem; }
+.footer-links a { display: block; margin-bottom: var(--space-2); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--primary); }
+.newsletter { display: flex; gap: var(--space-1); margin-top: var(--space-2); }
+.newsletter input { flex: 1; border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: var(--space-4); font-size: 0.9rem; }
+@media (max-width: 768px) { .footer-bottom { flex-direction: column; gap: var(--space-2); text-align: center; } }
+.footer-legal { display: flex; gap: var(--space-3); }
+
+/* Reveal Animation */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
