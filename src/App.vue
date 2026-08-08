@@ -11,14 +11,16 @@
           <a href="#process">Process</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a class="btn btn-primary nav-cta" href="#contact">Book a call</a>
-        <button class="mobile-toggle" @click="toggleMobileMenu" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-menu" aria-label="Toggle navigation">
-          <div class="hamburger" :class="{ 'is-active': mobileMenuOpen }">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </button>
+        <div class="header-actions">
+          <a class="btn btn-primary nav-cta" href="#contact">Book a call</a>
+          <button class="mobile-toggle" @click="toggleMobileMenu" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-menu" aria-label="Toggle navigation">
+            <div class="hamburger" :class="{ 'is-active': mobileMenuOpen }">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
       </div>
       <transition name="fade-blur">
         <div v-if="mobileMenuOpen" class="mobile-menu-overlay" @click="closeMobileMenu">
@@ -28,6 +30,7 @@
               <a href="#work" @click="closeMobileMenu" style="--delay: 0.2s">Work</a>
               <a href="#process" @click="closeMobileMenu" style="--delay: 0.3s">Process</a>
               <a href="#contact" @click="closeMobileMenu" style="--delay: 0.4s">Contact</a>
+              <a href="#contact" class="btn btn-primary mobile-nav-cta" @click="closeMobileMenu" style="--delay: 0.5s">Book a call</a>
             </div>
           </div>
         </div>
@@ -573,14 +576,26 @@ export default {
 .site-nav a { font-weight: 500; transition: color 0.2s; }
 .site-nav a:hover { color: var(--primary); }
 @media (max-width: 768px) {
-  .site-nav, .nav-cta { display: none; }
+  .site-nav { display: none; }
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 .mobile-toggle {
   display: none;
   z-index: 101;
+  padding: 8px;
+  margin-right: -8px;
 }
 @media (max-width: 768px) {
+  .header-actions { gap: var(--space-2); }
   .mobile-toggle { display: block; }
+  .nav-cta {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
 }
 .hamburger {
   width: 24px;
@@ -641,6 +656,11 @@ export default {
   transform: translateY(20px);
   animation: slideUp 0.4s forwards;
   animation-delay: var(--delay);
+}
+.mobile-nav-links .mobile-nav-cta {
+  font-size: 1.125rem;
+  margin-top: var(--space-2);
+  color: #fff;
 }
 @keyframes slideUp {
   to { opacity: 1; transform: translateY(0); }
