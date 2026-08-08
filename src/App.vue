@@ -779,7 +779,7 @@ export default {
 .cta-form-container { background: #fff; padding: var(--space-5); border-radius: 16px; color: var(--text); }
 .cta-form .form-row { margin-bottom: var(--space-3); }
 .cta-form label { display: block; font-weight: 600; font-size: var(--text-sm); margin-bottom: 8px; }
-.cta-form input, .cta-form textarea { width: 100%; border: 1px solid var(--border); padding: 16px; border-radius: 8px; font: inherit; background: var(--surface-soft); transition: var(--trans); }
+.cta-form input, .cta-form textarea { width: 100%; border: 1px solid var(--border-strong); padding: 16px; border-radius: 8px; font: inherit; background: var(--surface-soft); transition: var(--trans); color: var(--text); }
 .cta-form input:focus, .cta-form textarea:focus { border-color: var(--primary); outline: none; background: #fff; box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1); }
 
 /* Footer */
