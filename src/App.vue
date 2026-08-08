@@ -581,7 +581,7 @@ export default {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-2);
 }
 .mobile-toggle {
   display: none;
@@ -590,11 +590,14 @@ export default {
   margin-right: -8px;
 }
 @media (max-width: 768px) {
-  .header-actions { gap: var(--space-2); }
   .mobile-toggle { display: block; }
   .nav-cta {
-    padding: 8px 16px;
+    padding: 8px 12px;
     font-size: 0.875rem;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .hamburger {
