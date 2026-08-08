@@ -4,7 +4,7 @@
 
     <header class="topbar" :class="{ scrolled: isScrolled }">
       <div class="container topbar-inner">
-        <a class="brand" href="#">BrightPath<span>Technologies</span></a>
+        <a class="brand" href="#main">BrightPath<span>Technologies</span></a>
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="#services">Services</a>
           <a href="#work">Work</a>
@@ -148,7 +148,7 @@
                   <li>Microservices architecture</li>
                   <li>High-availability infrastructure</li>
                 </ul>
-                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+                <a href="#about" class="link-cta">Explore capability <span>&rarr;</span></a>
               </div>
             </div>
             
@@ -156,7 +156,7 @@
               <div class="bento-content">
                 <h3>AI & Automation Systems</h3>
                 <p>Integrating intelligent automation into your workflows to reduce manual overhead and unlock new capabilities.</p>
-                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+                <a href="#about" class="link-cta">Explore capability <span>&rarr;</span></a>
               </div>
             </div>
 
@@ -164,7 +164,7 @@
               <div class="bento-content">
                 <h3>Cloud Native Architecture</h3>
                 <p>Resilient cloud infrastructure utilizing AWS, Docker, and Kubernetes for maximum uptime.</p>
-                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+                <a href="#about" class="link-cta">Explore capability <span>&rarr;</span></a>
               </div>
             </div>
             
@@ -172,7 +172,7 @@
               <div class="bento-content">
                 <h3>Product Design & Strategy</h3>
                 <p>We bridge the gap between business objectives and technical execution. Our design process ensures that every feature we build solves a real user problem, wrapped in a polished, intuitive interface.</p>
-                <a href="#contact" class="link-cta">Explore capability <span>&rarr;</span></a>
+                <a href="#about" class="link-cta">Explore capability <span>&rarr;</span></a>
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@
       </section>
 
       <!-- Why Choose Us -->
-      <section class="section border-y">
+      <section id="about" class="section border-y">
         <div class="container">
           <div class="trust-block">
             <div class="trust-header">
@@ -370,7 +370,7 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <div class="footer-brand">
-          <a class="brand" href="#">BrightPath<span>Technologies</span></a>
+          <a class="brand" href="#main">BrightPath<span>Technologies</span></a>
           <p>Premium software engineering and design for ambitious companies scaling their digital footprint.</p>
         </div>
         <div class="footer-links">
@@ -384,7 +384,7 @@
           <h4>Company</h4>
           <a href="#work">Work</a>
           <a href="#process">Process</a>
-          <a href="#">About</a>
+            <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="footer-contact">
@@ -399,8 +399,8 @@
       <div class="container footer-bottom">
         <p>&copy; 2026 BrightPath Technologies. All rights reserved.</p>
         <div class="footer-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#main">Privacy Policy</a>
+          <a href="#contact">Terms of Service</a>
         </div>
       </div>
     </footer>
@@ -823,4 +823,486 @@ export default {
 /* Reveal Animation */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+.app-shell {
+  position: relative;
+  overflow-x: clip;
+}
+
+.app-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(37, 99, 235, 0.12), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(15, 23, 42, 0.08), transparent 22%);
+  z-index: -1;
+}
+
+.topbar {
+  background: rgba(245, 247, 251, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.topbar.scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.topbar-inner {
+  min-height: 4.75rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+}
+
+.site-nav {
+  gap: 1.75rem;
+}
+
+.site-nav a {
+  position: relative;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--trans);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--primary);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.mobile-toggle {
+  padding: 0.5rem;
+  margin-right: -0.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.mobile-menu-overlay {
+  background: rgba(248, 250, 252, 0.94);
+}
+
+.mobile-nav-links a {
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.hero {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.hero-grid {
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.hero-copy {
+  max-width: 40rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 5rem);
+}
+
+.hero-text {
+  font-size: 1.08rem;
+  max-width: 34rem;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hero-trust {
+  gap: 0.75rem;
+}
+
+.trust-pill,
+.hero-logos span {
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-pill {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.hero-logos span {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.dashboard-shell {
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-lg);
+}
+
+.dashboard-topbar {
+  align-items: center;
+}
+
+.topbar-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.topbar-dots span {
+  background: #cbd5e1;
+}
+
+.dashboard-body {
+  grid-template-columns: 110px 1fr;
+}
+
+.dashboard-sidebar {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sidebar-item {
+  font-size: 0.8rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sidebar-item.active {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.mini-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-heading {
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.status-pill {
+  font-size: 0.8rem;
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.35rem 0.7rem;
+  white-space: nowrap;
+}
+
+.dashboard-card {
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.9);
+  min-height: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-card.secondary {
+  background: var(--surface-soft);
+}
+
+.card-label {
+  letter-spacing: 0.08em;
+}
+
+.chart-bars span {
+  background: linear-gradient(180deg, var(--accent), var(--primary));
+  border-radius: 999px 999px 0 0;
+}
+
+.dashboard-card ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.floating-pill {
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.floating-pill.one {
+  top: -18px;
+  right: 16px;
+}
+
+.floating-pill.two {
+  bottom: -18px;
+  left: -16px;
+}
+
+.marquee-section {
+  background: #fafafa;
+}
+
+.marquee-item {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  opacity: 0.78;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bento-card {
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+}
+
+.bento-card:hover {
+  border-color: rgba(37, 99, 235, 0.28);
+  box-shadow: var(--shadow-md);
+}
+
+.bento-primary {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(255, 255, 255, 0.9));
+  border-color: rgba(37, 99, 235, 0.18);
+}
+
+.link-cta {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.trust-metrics {
+  gap: var(--space-3);
+}
+
+.metric-item {
+  border: 1px solid var(--border);
+  padding: var(--space-3);
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.88);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-val {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+}
+
+.metric-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.work-info {
+  max-width: 34rem;
+}
+
+.tech-badges span,
+.tech-tags span {
+  border-radius: 999px;
+}
+
+.work-visual-mockup {
+  min-height: 20rem;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(37, 99, 235, 0.04));
+  box-shadow: var(--shadow-sm);
+}
+
+.process-step {
+  border-radius: 24px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: var(--shadow-sm);
+}
+
+.step-num {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.tech-tags span {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--border);
+}
+
+.testimonial-box {
+  border-radius: 24px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.quote {
+  font-weight: 600;
+}
+
+.cta-form-container {
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-form input,
+.cta-form textarea {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.cta-form input:focus,
+.cta-form textarea:focus {
+  border-color: rgba(37, 99, 235, 0.6);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.site-footer {
+  background: rgba(15, 23, 42, 0.96);
+  color: rgba(255,255,255,0.78);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.site-footer .brand,
+.site-footer h4,
+.site-footer a,
+.site-footer p {
+  color: inherit;
+}
+
+.site-footer .brand span {
+  color: #93c5fd;
+}
+
+.footer-links a,
+.footer-legal a {
+  font-weight: 600;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible,
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: #fff;
+}
+
+.newsletter input {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.newsletter input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 992px) {
+  .site-nav {
+    gap: 1rem;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .nav-cta {
+    padding-inline: 1rem;
+  }
+
+  .hero-copy,
+  .work-info,
+  .cta-copy {
+    max-width: none;
+  }
+
+  .dashboard-body {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .floating-pill.two {
+    left: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-inner {
+    gap: 0.75rem;
+  }
+
+  .header-actions .nav-cta {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-grid,
+  .trust-metrics,
+  .testimonial-grid,
+  .tech-ecosystem,
+  .footer-layout,
+  .cta-grid,
+  .work-row,
+  .work-row.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .work-results {
+    gap: 0.75rem;
+  }
+
+  .cta-form-container {
+    padding: 1.25rem;
+  }
+
+  .newsletter {
+    flex-direction: column;
+  }
+
+  .newsletter .btn-primary {
+    width: 100%;
+  }
+}
 </style>
